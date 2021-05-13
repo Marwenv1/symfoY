@@ -1,0 +1,102 @@
+{% extends 'base1.html.twig' %}
+
+
+
+{% block title %}Style CV{% endblock %}
+
+
+
+
+
+
+
+ {% block css%}
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
+     <link class="skin" rel="stylesheet" type="text/css" href="{{ asset('css/skin/skin-1.css') }}">
+     <link rel="stylesheet" href="{{ asset('plugins/datepicker/css/bootstrap-datetimepicker.min.css') }}"/>
+     <!-- Revolution Slider Css -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/revolution/revolution/css/layers.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/revolution/revolution/css/settings.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/revolution/revolution/css/navigation.css') }}">
+     <link rel="stylesheet"  type="text/css" href="{{ asset('css/material-kit.css') }}" >
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+
+     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/tam1.css') }}">
+
+
+
+ {% endblock %}
+
+
+
+
+
+
+{% block container %}
+<!-- FONTS -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'><link rel="stylesheet" href="tam1.css"/>
+<!-- PAGE STUFF -->
+    {%  for c in cvs   %}
+<div class="rela-block page">
+    <div class="rela-block top-bar">
+        <div class="caps name"><div class="abs-center">Nom :{{ c.nom }} </br> Prenom :{{  c.prenom }}</div></div>
+
+
+
+    </div>
+    <div class="side-bar">
+        <div class="mugshot">
+            <div class="logo">
+                    <img  src="{{ asset("/uploads/#{c.photo}") }}"  alt="Card image cap">
+            </div>
+        </div>
+
+
+
+
+
+        <p>Adresse :{{  c.adresse }}</p>
+        <p>Telephone :{{  c.telephone }}</p>
+        <p>Codepostale :{{  c.codepostale }}</p><br>
+
+
+        <p class="rela-block social twitter">{{ c.nom }}{{  c.prenom }}</p>
+        <p class="rela-block social pinterest">{{ c.nom }}{{  c.prenom }}</p>
+        <p class="rela-block social linked-in">{{ c.nom }}{{  c.prenom }}</p>
+        <p class="rela-block caps side-header">Expertise</p>
+        <p class="rela-block list-thing">{{  c.formation }}</p>
+        <p class="rela-block list-thing">{{  c.etablif }}</p>
+        <p class="rela-block list-thing">{{  c.etablif }}</p>
+        <p class="rela-block list-thing">{{  c.etablif }}</p>
+
+    </div>
+    <div class="rela-block content-container">
+
+        <br class="list-group list-group-flush">
+
+
+            <li class="list-group-item">Sexe :{{  c.sexe }}</li></br>
+
+        <li class="list-group-item">Etatcivil :{{  c.etatcivil }}</li></br>
+
+
+            <li class="list-group-item">Ville :{{  c.ville }}</li></br>
+
+            <li class="list-group-item">Datedenaissance :{{  c.datedenaissance | date }} a {{  c.lieu }}</li></br>
+
+
+
+
+            <li class="list-group-item">Centre Dinteret :{{  c.centredinteret }}</li>
+        </br></br>
+    {%  endfor   %}
+    <a href="{{ path('Cvpdf') }}">PDF</a>
+    </div>
+</div>
+{% endblock  %}

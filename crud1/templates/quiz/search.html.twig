@@ -1,0 +1,66 @@
+{% extends 'back1.html.twig' %}
+{% block container %}
+    <p>Recherche</p>
+    <input type="text" class="form-control" id="recherche">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Voir les Questions</th>
+            <th scope="col">Mofidier</th>
+            <th scope="col">Supprimer</th>
+
+        </tr>
+        </thead>
+        <tbody id="result">
+
+
+        </tbody>
+    </table>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $("#recherche").keyup(function() {
+                var minlength = 0;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#result").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "POST",
+                        url: "{{ path('searchfunc') }}",
+                        data: {
+                            'q' : value
+                        },
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value===$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key === 'entities') {
+                                            if (id !== 'error') {
+                                                entitySelector.append(
+                                                    '<tr><td>'+value[0]+'</td>' +
+                                                    '<td><a href="/'+id+'/detailQuiz/">details</a></td>' +
+                                                    '<td><a href="/'+id+'/modifierQuiz">Modifier</a></td>'+
+                                                    '<td><a href="/'+id+'/supprimerQuiz/">Supprimer</a></td></tr>'
+                                                );
+                                            } else {
+                                                entitySelector.append('<div class="errorLi">'+value+'</div>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

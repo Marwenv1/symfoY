@@ -1,0 +1,63 @@
+{% extends 'back1.html.twig' %}
+{% block title %}Admin CV{% endblock %}
+{% block container %}
+
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">photo</th>
+            <th scope="col">nom</th>
+            <th scope="col">prenom</th>
+            <th scope="col">email</th>
+            <th scope="col">telephone</th>
+            <th scope="col">adresse </th>
+            <th scope="col">codepostale</th>
+            <th scope="col">ville</th>
+
+
+            <th scope="col">supprimer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {%  for c in cvs   %}
+            <tr>
+                <td scope="row"><img class="card-img-top" style="height: 50px;width: 50px;" src="{{ asset("/uploads/#{c.photo}") }}" alt="Card image cap"></td>
+                <td scope="row">{{ c.nom }}</td>
+                <td scope="row">{{  c.prenom }}</td>
+                <td scope="row">{{  c.email }}</td>
+                <td scope="row">{{  c.telephone }}</td>
+                <td scope="row">{{  c.adresse }}</td>
+                <td scope="row">{{  c.codepostale }}</td>
+                <td scope="row">{{  c.ville }}</td>
+
+
+
+
+
+                <td><a href="{{ path('AdminsupprimerCv',{'id':c.id}) }}">Supprimer</a></td>
+
+
+
+
+
+
+
+
+
+
+            </tr>
+        {%  endfor  %}
+        </tbody>
+    </table>
+
+
+
+
+    <a href="{{ path('quizadmin') }}">Afficher tous les quiz</a>
+
+
+{% endblock %}

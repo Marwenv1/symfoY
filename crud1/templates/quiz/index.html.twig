@@ -1,0 +1,226 @@
+{% extends 'base1.html.twig' %}
+{% block container %}
+    <style>
+        input[type=text] {
+            width: 40%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #330485;
+            border-radius: 40px;
+        }
+    </style>
+    <p>Recherche</p>
+    <input type="text" class="form-control" id="recherche">
+</br>
+    </br></br>
+    <table class="table" >
+
+
+        <tbody id="result" class="totoo">
+
+
+        </tbody>
+
+    </table>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $("#recherche").keyup(function() {
+                var minlength = 0;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#result").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "POST",
+                        url: "{{ path('searchfunc') }}",
+                        data: {
+                            'q' : value
+                        },
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value===$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key === 'entities') {
+                                            if (id !== 'error') {
+                                                entitySelector.append(
+                                                    ' <div  class="container row">'+
+
+
+                                                    '   <div class="card col-md-4">'+
+
+
+                                                            '<div class="face face1">'+
+                                                                '    <div class="content">'+
+
+                                                                    '  <h3>'+value[0]+'</h3>'+
+                                                                    '  </div>'+
+                                                                '  </div>'+
+
+
+                                                            '<div class="face face2">'+
+                                                                '  <div class="content">'+
+                                                                    ' <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>'+
+                                                                    '  <a href="#">Read More</a>'+
+                                                                    '   </div>'+
+                                                                '     </div>'+
+
+
+
+
+                                                                '     </div>'+
+
+
+
+                                                    '     </div>'+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            );
+                                            } else {
+                                                entitySelector.append('<div class="errorLi">'+value+'</div>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+
+                var minlength = 0;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#result").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "POST",
+                        url: "{{ path('searchfunc') }}",
+                        data: {
+                            'q' : value
+                        },
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value===$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key === 'entities') {
+                                            if (id !== 'error') {
+                                                entitySelector.append(
+
+
+                                                    ' <div class="col-md-4">'+
+                                                    ' <div class="container ">'+
+
+                                                    '   <div class="card">'+
+                                                    '<div class="card">'+
+                                                    '<div class="face face1">'+
+                                                    '    <div class="content">'+
+
+                                                    '  <h3>'+value[0]+'</h3>'+
+                                                    '  </div>'+
+                                                    '  </div>'+
+                                                    '<div class="face face2">'+
+                                                    '  <div class="content">'+
+                                                    '  <a href="/'+id+'/supprimerQuiz/">Supprimer</a>'+
+
+                                                    '  <a href="/'+id+'/modifierQuiz">Modifier </a>'+
+                                                    '<br>'+
+
+                                                    '  <a href="/'+id+'/detailQuiz/">Detail</a>'+
+                                                    '   </div>'+
+                                                    '     </div>'+
+                                                    '     </div>'+
+                                                    '     </div>'
+
+
+                                            );
+                                            } else {
+                                                entitySelector.append('<div class="errorLi">'+value+'</div>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+
+        });
+
+    </script>
+    <br>
+    <br>
+    <br>
+    <br><br>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

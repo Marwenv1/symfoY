@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+
+
+    <title>{% block title %}Faciljob{% endblock %}</title>
+
+    {% block css%}
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
+      <link class="skin" rel="stylesheet" type="text/css" href="{{ asset('css/skin/skin-1.css') }}">
+      <link rel="stylesheet" href="{{ asset('plugins/datepicker/css/bootstrap-datetimepicker.min.css') }}"/>
+      <!-- Revolution Slider Css -->
+      <link rel="stylesheet" type="text/css" href="{{ asset('plugins/revolution/revolution/css/layers.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('plugins/revolution/revolution/css/settings.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('plugins/revolution/revolution/css/navigation.css') }}">
+      <link rel="stylesheet"  type="text/css" href="{{ asset('css/material-kit.css') }}" >
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/cardss.css') }}">
+
+      <link rel="stylesheet" href="{{ asset('css/stylee2.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/stylee.css') }}">
+
+
+
+    {% endblock %}
+    </head>
+
+    <body>
+    {% block body %}
+
+
+    {% endblock %}
+
+
+    <br><br><br><br><br><br>
+
+    <!-- //////////////////////////////////////////////////////////jQuery -->
+    <!-- ***** Preloader Start ***** -->
+    {% block header %}
+
+
+
+
+        <!-- ***** Preloader Start ***** -->
+        <!-- ***** Preloader End ***** -->
+
+
+        <!-- ***** Header Area Start ***** -->
+        {% include "Vitrine/navbar1.html.twig" %}
+        <!-- ***** Header Area End ***** -->
+        <!-- ***** Main Banner Area Start ***** -->
+        <!-- ***** Main Banner Area End ***** -->
+        <!-- About Us -->
+        {% block container %}{% endblock %}
+        <!-- Footer -->
+        {% include "Vitrine/footer.html.twig" %}
+        <!-- Footer END -->
+
+
+
+
+
+  {% endblock %}
+          <
+
+
+ {% block footer %}
+ =
+    {% endblock %}
+
+    {% block js %}
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery-2.1.0.min.js')}}"></script>
+
+    <!-- Bootstrap -->
+    <script src="js/popper.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+
+    <!-- Plugins -->
+    <script src="js/scrollreveal.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/imgfix.min.js"></script>
+    <script src="js/mixitup.js"></script>
+    <script src="js/accordions.js"></script>
+
+    <!-- Global Init -->
+    <script src="js/custom.js"></script>
+    <script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+    <script src="plugins/wow/wow.js"></script><!-- WOW JS -->
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
+    <script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
+    <script src="plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
+    <script src="plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+    <script src="plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+    <script src="plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
+    <script src="plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
+    <script src="plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
+    <script src="plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
+    <script src="plugins/rangeslider/rangeslider.js" ></script><!-- Rangeslider -->
+    <script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+    <script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
+    <script src='js/recaptcha/api.js'></script> <!-- Google API For Recaptcha  -->
+    <script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
+    <script src="plugins/paroller/skrollr.min.js"></script><!-- PAROLLER -->
+    {% endblock %}
+
+
+
+
+
+    </body>
+  </html>

@@ -1,0 +1,103 @@
+{% extends 'base1.html.twig' %}
+{% block title %}Liste des cvs{% endblock %}
+{% block container %}
+
+
+
+
+<div class="okii">
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 300px;  /* The height is 400 pixels */
+            width: 100%;  /* The width is the width of the web page */
+        }
+    </style>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
+
+            {%  for c in cvs   %}
+<div class="card">
+                <div class="card" style="width: 40rem;">
+
+                    <img class="card-img-top"  src="{{ asset("/uploads/#{c.photo}") }}"  alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ c.nom }} {{ c.prenom }}</h5>
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">Email :{{  c.email }}</li>
+                        <li class="list-group-item">Telephone :{{  c.telephone }}</li>
+                        <li class="list-group-item">Adresse :{{  c.adresse }}</li>
+                        <li class="list-group-item">Codepostale :{{  c.codepostale }}</li>
+                        <li class="list-group-item">Ville :{{  c.ville }}</li>
+                        <li class="list-group-item">Datedenaissance :{{  c.datedenaissance | date }}</li>
+                        <li class="list-group-item">Lieu :{{  c.lieu }}</li>
+                        <li class="list-group-item">Sexe :{{  c.sexe }}</li>
+                        <li class="list-group-item">Etatcivil :{{  c.etatcivil }}</li>
+                        <li class="list-group-item">Formation :{{  c.formation }}</li>
+                        <li class="list-group-item">Etablissement formation :{{  c.etablif }}</li>
+                        <li class="list-group-item">Stage :{{  c.stage }}</li>
+                        <li class="list-group-item">Etablissement Stage :{{  c.etablis }}</li>
+                        <li class="list-group-item">Experience :{{  c.experience }}</li>
+                        <li class="list-group-item">Etablissement Experience :{{  c.tablie }}</li>
+                        <li class="list-group-item">Centre Dinteret :{{  c.centredinteret }}</li>
+                        <div id="map"></div>
+                        <script>
+                            var locations = [
+                                ['{{ c.adresse }}', {{ c.altitude }} , {{ c.longtitude }}, 1]
+                            ];
+
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 7,
+                                center: new google.maps.LatLng(34.39824207, 8.79656443),
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            });
+
+                            var infowindow = new google.maps.InfoWindow();
+
+                            var marker, i;
+
+                            for (i = 0; i < locations.length; i++) {
+                                marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                    map: map
+                                });
+
+                                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                    return function() {
+                                        infowindow.setContent(locations[i][0]);
+                                        infowindow.open(map, marker);
+                                    }
+                                })(marker, i));
+                            }
+                        </script>
+
+
+
+
+                    </ul>
+                    <div class="card-body">
+                                              <a href="{{ path('supprimerCv',{'id':c.id}) }}">Supprimer</a>
+                                                  <a href="{{ path('modifierCv',{'id':c.id}) }}">Modifier</a>
+
+
+
+
+
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+</div>
+
+
+            {%  endfor  %}
+
+</div>
+
+
+
+
+
+
+    {% endblock %}

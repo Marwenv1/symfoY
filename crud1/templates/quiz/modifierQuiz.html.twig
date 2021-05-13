@@ -1,0 +1,33 @@
+
+{% extends 'base1.html.twig' %}
+{% block title %}Modifier Quiz{% endblock %}
+
+{% block container %}
+<div class ="tittt">
+    Modifier le quiz</div></br></br>
+<div class="oki">
+    </br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    {{ form_start(form) }}
+    <div class="tittto">
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Titre de Quiz</label>
+        {{ form_widget(form.title,{'attr':{'class':'form-control'}}) }}
+    </div>
+    </div>
+
+
+    {{ form_widget(form.Modifier,{'attr':{'class':'btn btn-info'}}) }}
+
+
+    {{ form_end(form) }}
+
+    <a href="{{ path('quiz') }}">Afficher tous les Quiz</a>
+</div>
+{% endblock %}
+

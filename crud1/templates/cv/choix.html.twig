@@ -1,0 +1,46 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Style CV{% endblock %}
+{% block container %}
+<div class ="tittt">
+    Choisir un theme</div>
+    <div class="oki">
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+
+
+
+                <a href="{{ path('tam2') }}"><img src="images/do.png" title="insert title" alt="First slide"></a>
+
+            </div>
+            <div class="carousel-item">
+                <a href="{{ path('tam1') }}"><img src="images/ra.png" title="insert title" alt="First slide"></a>
+            </div>
+            <div class="carousel-item">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

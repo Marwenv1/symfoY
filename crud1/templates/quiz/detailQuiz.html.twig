@@ -1,0 +1,129 @@
+{% extends 'base1.html.twig' %}
+{% block container %}
+
+    <div class="okai">
+    <h6>{{ quiz.title }}</h6></br>
+    <div class="row">
+    {%  for q in quiz.questions   %}
+    <div class="col-sm-6">
+    <div class="card" style="width: 20rem;">
+        <div class="card-header">
+            <h4 class="card-title">{{ q.question}}</h4>
+        </div>
+        <div class="card-body">
+            <h6>{{ q.choix1 }}</h6>
+            <h6>{{ q.choix2 }}</h6>
+            <h6>{{ q.choix3 }}</h6>
+            <h6>{{ q.reponse }}</h6>
+        </div>
+        <div class="card-footer">
+            <button data-target="#exampleModal{{ q.id }}"   class="btn btn-primary" data-toggle="modal" >
+               Modifier
+            </button>
+            <a href="{{ path('suppQuestion',{'id':q.id}) }}" class="btn btn-dark">Supprimer</a>
+        </div>
+    </div>
+    </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal{{ q.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="post" action="/{{ q.id}}/modifierQuestion">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modifier Question</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Question</label>
+                                <input type="text" value="{{ q.question }}" name="question" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Choix 1</label>
+                                <input type="text" value="{{ q.choix1 }}" name="choix1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Choix 2</label>
+                                <input type="text" value="{{ q.choix2 }}" name="choix2" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Choix 3</label>
+                                <input type="text" value="{{ q.choix3 }}" name="choix3" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Vrai Reponse</label>
+                                <select name="reponse" class="form-control">
+                                    <option value="1">choix 1</option>
+                                    <option value="2">choix 2</option>
+                                    <option value="3">choix 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Modifier" >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <br>
+        <br>
+    <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ quiz.id }}">
+        Ajouter une autre question
+    </button>
+    <br><br><br>
+
+    <br>
+
+    <a href="{{ path('quiz') }}">Afficher les Quiz</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal{{ quiz.id }}" tabindex="-1" role="dialog" aria-labelledby="modifierModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="post" action="/{{ quiz.id}}/ajoutQuestion">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter Question</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Question</label>
+                            <input type="text" name="question" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Choix 1</label>
+                            <input type="text" name="choix1" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Choix 2</label>
+                            <input type="text" name="choix2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Choix 3</label>
+                            <input type="text" name="choix3" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Vrai Reponse</label>
+                            <select name="reponse" class="form-control">
+                                <option value="1">choix 1</option>
+                                <option value="2">choix 2</option>
+                                <option value="3">choix 3</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Ajouter" >
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+{% endblock %}

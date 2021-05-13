@@ -1,0 +1,39 @@
+{% extends 'base1.html.twig' %}
+{% block title %}Ajouter un quiz{% endblock %}
+{% block container %}
+
+    <div class ="tittt">
+        Ajouter un nouveau quiz</div></br></br>
+    <div class="oki">
+        </br>
+
+
+<br>
+    <br>
+    <br>
+    <br>
+
+{{ form_start(form) }}
+
+
+
+
+
+    <div class="tittto">
+        <label for="exampleInputEmail1">Titre de Quiz</label>
+        {{ form_widget(form.title,{'attr':{'class':'form-control'}}) }}
+    </div>
+
+{{ form_widget(form.Ajouter,{'attr':{'class':'site-button radius-xl'}}) }}
+
+
+{{ form_end(form) }}
+
+<a href="{{ path('quiz') }}">Afficher tous les Quiz</a>
+
+    </div>
+    </br>
+    </br>
+    </br>
+    </br>
+{% endblock %}

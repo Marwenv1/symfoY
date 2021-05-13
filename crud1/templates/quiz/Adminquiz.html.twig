@@ -1,0 +1,32 @@
+{% extends 'back1.html.twig' %}
+{% block title %}Admin Quiz{% endblock %}
+{% block container %}
+
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">Titre</th>
+            <th scope="col">Supprimer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {%  for q in quizs   %}
+            <tr>
+                <th scope="row">{{ q.title }}</th>
+                <td><a href="{{ path('AdminsupprimerQuiz',{'id':q.id}) }}">Supprimer</a></td>
+
+            </tr>
+        {%  endfor  %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('cvadmin') }}">Afficher tous les cv</a>
+
+
+{% endblock %}
+
